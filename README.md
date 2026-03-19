@@ -146,3 +146,41 @@ if (true) {
 
 ---
 
+## 🚀 Part 14: Hoisting (Misteri "Pengangkatan" Kode)
+
+Hoisting adalah perilaku unik JavaScript yang secara mental "mengangkat" deklarasi variabel dan fungsi ke bagian paling atas kode sebelum dijalankan. Ini adalah alasan kenapa kode kamu terkadang bisa berjalan meski urutannya terlihat "terbalik".
+
+### 🧩 Analogi: "Persiapan Panggung Konser"
+* **Hoisting:** Ibarat kru panggung yang sudah menyiapkan mikrofon dan alat musik di posisinya **sebelum** penyanyi naik panggung. Jadi saat penyanyi datang, semuanya sudah siap digunakan.
+* **JavaScript:** JS melakukan "scanning" cepat untuk mencari semua fungsi dan variabel sebelum mengeksekusi baris pertama.
+
+---
+
+### 📚 Teori: Siapa yang Terangkat?
+
+| Tipe | Perilaku Hoisting | Status |
+| :--- | :--- | :--- |
+| **Function Declaration** | Diangkat sepenuhnya (isi & nama). | ✅ Aman dipanggil di mana saja. |
+| **Variable `var`** | Diangkat, tapi nilainya tidak dibawa. | ⚠️ Hasilnya `undefined`. |
+| **`let` & `const`** | Diangkat ke "Temporal Dead Zone". | ❌ Error jika dipanggil sebelum baris kode. |
+
+---
+
+### 💻 Praktek Kode
+
+```javascript
+// --- 1. HOISTING PADA FUNGSI ---
+// Kita panggil di baris 2, padahal deklarasi di baris 5
+sayHello(); 
+
+function sayHello() {
+    console.log("Halo! Saya terpanggil berkat Hoisting.");
+}
+
+// --- 2. HOISTING PADA VAR ---
+console.log(nama); // Output: undefined (Bukan Error!)
+var nama = "Syaifan";
+
+// --- 3. KEAMANAN LET & CONST ---
+// console.log(umur); // ❌ ERROR! Tidak bisa akses sebelum inisialisasi
+let umur = 20;
