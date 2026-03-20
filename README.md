@@ -1,186 +1,305 @@
-## 🏗️ Part 11: Function Declaration vs Expression
+# 🏗️ Part 11: Function Declaration vs Expression (Tombol Resep)
 
-Pada bagian ini, kita belajar tentang **Function**, yaitu sebuah blok kode yang dirancang untuk melakukan tugas tertentu. Fungsi memungkinkan kita menulis kode sekali dan menggunakannya berkali-kali (Reusable).
+### 🧩 Analogi: "Tombol Mesin Kopi"
 
-### 🧩 Analogi: "Resep Masakan & Tombol Remote"
-* **Tanpa Function:** Kamu harus menulis ulang instruksi memasak setiap kali ada pesanan.
-* **Dengan Function:** Kamu cukup membuat satu "Tombol" atau "Resep", lalu menekan/memanggilnya kapan pun dibutuhkan.
-
----
-
-### 📚 Teori: Dua Cara Mendefinisikan Fungsi
-
-1. **Function Declaration (Cara Klasik)**
-   Dideklarasikan dengan kata kunci `function` diikuti nama fungsinya. 
-   > **Keunggulan:** Mendukung *Hoisting* (Bisa dipanggil bahkan sebelum baris kodenya ditulis).
-
-2. **Function Expression (Cara Modern)**
-   Fungsi yang dimasukkan ke dalam sebuah variabel.
-   > **Keunggulan:** Lebih rapi dan sering digunakan dalam pemrograman fungsional modern.
-
-
+Bayangkan kamu punya mesin kopi otomatis.
+* **Function**: Adalah **Tombol** di mesin tersebut. Di dalam tombol itu sudah ada "prosedur" (ambil air, giling kopi, tuang susu). Kamu tidak perlu melakukan itu manual setiap kali ingin minum kopi. Cukup tekan satu tombol, kopinya jadi.
+* **Declaration**: Ibarat tombol yang sudah terpasang permanen di mesin sejak awal (bisa ditekan kapan saja).
+* **Expression**: Ibarat tombol tambahan yang kamu buat sendiri dan kamu simpan di dalam sebuah kotak (variabel). Kamu harus membuat kotaknya dulu baru bisa menekan tombolnya.
 
 ---
 
-### 🛠️ Praktek Kode
+### 📚 Teori: Dua Cara Membuat Fungsi
+
+Fungsi adalah blok kode yang dirancang untuk melakukan tugas tertentu dan bisa dipanggil berulang kali.
+
+1.  **Function Declaration**: Ditulis langsung dengan kata kunci `function`. Kelebihannya adalah terkena **Hoisting** (bisa dipanggil di baris kode atas, padahal fungsinya ditulis di bawah).
+2.  **Function Expression**: Fungsi yang disimpan di dalam variabel. Ini lebih ketat karena **tidak bisa** dipanggil sebelum variabelnya dibuat.
+
+
+
+---
+
+### 🛠️ Praktek: Membuat "Mesin Sapaan"
+
+Buka file `script.js` kamu dan coba bandingkan dua cara ini:
 
 ```javascript
 // --- 1. FUNCTION DECLARATION ---
-// Memanggil fungsi (Bisa dilakukan sebelum deklarasi karena Hoisting)
-sapaUser("Budi"); 
+// Bisa dipanggil duluan sebelum dibuat (Hoisting)
+sapaUser("Syaifan"); 
 
 function sapaUser(nama) {
-    console.log(`Halo, Master ${nama}! Selamat datang di sistem.`);
+    console.log(`Halo Master ${nama}, siap coding hari ini?`);
 }
 
 // --- 2. FUNCTION EXPRESSION ---
-// Memasukkan fungsi ke dalam variabel const
-const hitungLuasPersegi = function(sisi) {
-    let luas = sisi * sisi;
-    return luas;
+// Harus dibuat dulu baru bisa dipanggil
+const hitungLuas = function(panjang, lebar) {
+    return panjang * lebar;
 };
 
-// Memanggil fungsi melalui variabelnya
-const hasil = hitungLuasPersegi(5);
-console.log(`Luas persegi dengan sisi 5 adalah: ${hasil}`);
-
-// --- 3. MULTIPLE PARAMETERS ---
-function buatKopi(jenis, gula) {
-    console.log(`Sedang membuat kopi ${jenis} dengan ${gula} sendok gula...`);
-    console.log("Kopi siap dihidangkan! ☕");
-}
-
-buatKopi("Latte", 2);
+let hasil = hitungLuas(10, 5);
+console.log(`Luas persegi adalah: ${hasil}`);
 ```
 
 ---
 
-## 🏹 Part 12: Arrow Function (Sintaks Modern ES6)
+### 🔍 Kenapa Ini Penting?
 
-Arrow Function adalah cara penulisan fungsi yang lebih singkat dan praktis. Diperkenalkan pada ES6, fitur ini sekarang menjadi standar industri karena membuat kode lebih bersih dan mudah dibaca.
+Fungsi adalah inti dari **Arsitektur Kode**. Dengan fungsi, kamu tidak perlu menulis kode yang sama berulang-ulang. Jika ada perubahan (misal: sapaannya mau diganti), kamu cukup ubah satu kali di dalam fungsi, dan semua tombol sapaan di website kamu akan berubah otomatis.
 
-### 🧩 Analogi: "Surat Formal vs Pesan WhatsApp"
-* **Function Biasa:** Ibarat menulis **Surat Formal**. Harus ada salam pembuka, isi yang panjang, dan penutup yang kaku.
-* **Arrow Function:** Ibarat kirim **Pesan WhatsApp**. Singkat, padat, langsung ke intinya (Contoh: "OTW"), tanpa basa-basi namun tujuannya tercapai.
+---
+
+### 💡 Tantangan Part 11
+
+1. Buat sebuah **Function Declaration** bernama `tambah` yang menerima dua angka dan mengembalikan hasilnya.
+2. Buat sebuah **Function Expression** bernama `kurang` yang melakukan hal yang sama.
+3. Panggil kedua fungsi tersebut dan tampilkan hasilnya di console.
+4. Coba panggil fungsi `kurang` di baris paling atas (sebelum dibuat) dan lihat apakah muncul error di console browser kamu!
+
+---
+
+**Sudah aman Part 11 ini di GitHub kamu? Kalau sudah, beri tahu saya untuk lanjut ke Part 12: Arrow Function!** 🚀
+
+---
+
+# 🏹 Part 12: Arrow Function (Sintaks Modern ES6)
+
+### 🧩 Analogi: "Pesan Singkat (SMS/Chat)"
+
+Bayangkan kamu ingin mengirim pesan.
+* **Function Biasa**: Seperti menulis **Surat Formal**. Harus ada pembukaan "Dengan hormat", isi, dan penutup yang panjang. Ribet kalau cuma mau bilang "Halo".
+* **Arrow Function**: Seperti mengirim **Chat WA**. Langsung ke intinya, tanpa basa-basi, pakai simbol panah `=>` yang keren. Lebih cepat ditulis dan lebih enak dibaca.
 
 ---
 
 ### 📚 Teori: Evolusi Penulisan Fungsi
 
-Untuk membuat Arrow Function, kita menghapus kata kunci `function` dan menggantinya dengan tanda panah `=>` setelah tanda kurung parameter.
+Di tahun 2015 (ES6), JavaScript memperkenalkan cara baru menulis fungsi yang lebih pendek.
+1.  **Hapus kata `function`**: Diganti dengan panah `=>` setelah tanda kurung parameter.
+2.  **Implicit Return**: Jika isinya cuma satu baris, kamu tidak perlu menulis `{}` dan kata `return`. Dia otomatis mengembalikan nilai.
+3.  **Satu Parameter**: Jika parameternya cuma satu, kamu bahkan tidak butuh tanda kurung `()`.
 
 
-
-#### Fitur Utama:
-1. **Implicit Return**: Jika fungsi hanya berisi satu baris kode, kita tidak perlu menulis `{}` dan kata kunci `return`.
-2. **Single Parameter**: Jika hanya ada satu parameter, tanda kurung `()` bisa dihilangkan.
 
 ---
 
-### 🛠️ Praktek Kode
+### 🛠️ Praktek: Si Singkat yang Perkasa
+
+Buka `script.js` kamu, bandingkan perubahannya:
 
 ```javascript
-// --- 1. TRANSFORMASI DARI FUNCTION EXPRESSION ---
-// Cara Lama
-const pangkatDuaLama = function(n) {
-    return n * n;
+// --- 1. CARA LAMA (Function Expression) ---
+const kaliDuaLama = function(n) {
+    return n * 2;
 };
 
-// Cara Baru (Arrow Function)
-const pangkatDuaBaru = (n) => {
-    return n * n;
+// --- 2. CARA BARU (Arrow Function) ---
+const kaliDuaBaru = n => n * 2; 
+
+console.log(`Hasil Lama: ${kaliDuaLama(5)}`);
+console.log(`Hasil Baru: ${kaliDuaBaru(5)}`);
+
+// --- 3. CONTOH DENGAN 2 PARAMETER ---
+const sapaBot = (nama, waktu) => {
+    return `Selamat ${waktu}, Master ${nama}!`;
 };
 
-// --- 2. VERSI PALING RINGKAS (Satu Baris) ---
-// Tanpa kurung kurawal, tanpa kata 'return'
-const kaliSepuluh = n => n * 10;
-
-console.log(`Hasil Kali Sepuluh: ${kaliSepuluh(5)}`); // Hasil: 50
-
-// --- 3. DENGAN DUA PARAMETER ---
-const sapaUser = (nama, waktu) => `Selamat ${waktu}, ${nama}!`;
-
-console.log(sapaUser("Bima", "Malam"));
+console.log(sapaBot("Syaifan", "Malam"));
 ```
 
 ---
 
-## 🏠 Part 13: Scope (Wilayah Kekuasaan Variabel)
+### 🔍 Kenapa Ini Penting?
 
-Scope adalah aturan yang menentukan di mana sebuah variabel bisa diakses atau digunakan. Di JavaScript, variabel tidak selalu bisa dipanggil dari mana saja.
-
-### 🧩 Analogi: "Taman Kota vs Kamar Pribadi"
-* **Global Scope:** Ibarat **Taman Kota**. Siapa saja boleh masuk dan melihat (Bisa diakses dari mana saja).
-* **Local Scope:** Ibarat **Kamar Pribadi**. Hanya orang di dalam rumah yang tahu isinya (Hanya bisa diakses di dalam fungsi).
-* **Block Scope:** Ibarat **Kotak Brankas**. Sangat spesifik, hanya hidup di dalam kurung kurawal `{ }` tertentu.
+Arrow function adalah standar industri sekarang. Kamu akan sering menemukannya saat belajar **React**, **Vue**, atau saat mengolah data Array (seperti yang akan kita bahas di Phase 4). Selain kodenya jadi lebih bersih, Arrow Function juga punya sifat unik dalam menangani kata kunci `this` (tapi itu untuk nanti ya!).
 
 ---
 
-### 💻 Praktek Kode
+### 💡 Tantangan Part 12
+
+1. Ubah fungsi **Function Declaration** di bawah ini menjadi **Arrow Function**:
+   ```javascript
+   function hitungKuadrat(angka) {
+       return angka * angka;
+   }
+   ```
+2. Buat satu Arrow Function bernama `cekGenap` yang menerima satu angka dan mengembalikan `true` jika angkanya genap (Tips: pakai operator `% 2 === 0`).
+3. Tampilkan hasilnya di console!
+
+---
+
+**Bagaimana, Master? Sudah terasa lebih "modern" kodenya? Kalau sudah rapi di GitHub, kasih aba-aba buat lanjut ke Part 13: Scope!** 🚀
+
+---
+
+Oke, langsung ke **Part 13**. Ini soal "wilayah kekuasaan" variabel.
+
+---
+
+# 🏠 Part 13: Scope (Taman Kota vs Kamar Pribadi)
+
+### 🧩 Analogi: "Akses WiFi"
+
+* **Global Scope**: Seperti **WiFi Cafe**. Siapa saja yang ada di dalam cafe (kode) bisa tersambung dan memakai internetnya.
+* **Local Scope**: Seperti **WiFi Rumah**. Hanya orang yang ada di dalam rumah (fungsi) itu saja yang bisa pakai. Orang di luar rumah tidak tahu password-nya dan tidak bisa akses.
+* **Block Scope**: Seperti **Hotspot HP**. Sangat terbatas, hanya perangkat yang nempel di HP itu (dalam kurung kurawal `{ }`) yang bisa pakai.
+
+---
+
+### 📚 Teori: Batasan Akses Variabel
+
+Scope menentukan di mana sebuah variabel bisa dipanggil atau digunakan.
+
+1.  **Global Scope**: Variabel yang dibuat di luar fungsi. Bisa diakses oleh semua fungsi di bawahnya.
+2.  **Function Scope (Local)**: Variabel yang dibuat di dalam `function`. Variabel ini "mati" atau hilang setelah fungsi selesai dijalankan.
+3.  **Block Scope**: Khusus untuk `let` dan `const`. Jika dibuat di dalam `if` atau `for` (di dalam `{ }`), variabel itu tidak bisa diakses dari luar blok tersebut.
+
+
+
+---
+
+### 🛠️ Praktek: Cek Batasan Variabel
+
+Coba jalankan kode ini di `script.js` dan lihat mana yang memicu error:
 
 ```javascript
-// 🌍 1. GLOBAL SCOPE
-// Variabel ini berada di luar semua fungsi
-const namaApp = "CyberSecurity Learning";
+// 1. GLOBAL SCOPE
+const aplikasi = "Koneka App";
 
 function jalankanMisi() {
-    // 🏠 2. LOCAL SCOPE (Function Scope)
-    // Variabel ini hanya ada di dalam fungsi jalankanMisi
-    let statusMisi = "Sedang Meretas...";
+    // 2. LOCAL SCOPE
+    let status = "Hacking...";
     
-    console.log(`Aplikasi: ${namaApp}`);   // ✅ BISA (Akses Global)
-    console.log(`Status: ${statusMisi}`); // ✅ BISA (Akses Lokal)
+    console.log(aplikasi); // ✅ BISA: Global diakses dari dalam
+    console.log(status);   // ✅ BISA: Local diakses di rumah sendiri
 }
 
 jalankanMisi();
 
-// console.log(statusMisi); // ❌ ERROR! Variabel lokal tidak dikenal di luar fungsi.
+// console.log(status); // ❌ ERROR: Variabel local tidak dikenal di luar
 
-// 📦 3. BLOCK SCOPE
+// 3. BLOCK SCOPE
 if (true) {
-    let kodeAkses = "12345";
-    console.log(`Kode: ${kodeAkses}`); // ✅ BISA
+    let rahasia = "12345";
+    console.log(rahasia); // ✅ BISA
 }
-// console.log(kodeAkses); // ❌ ERROR! let/const tidak bisa keluar dari blok { }
+// console.log(rahasia); // ❌ ERROR: let tidak bisa keluar dari { }
 ```
 
 ---
 
-## 🚀 Part 14: Hoisting (Misteri "Pengangkatan" Kode)
+### 🔍 Kenapa Ini Penting?
 
-Hoisting adalah perilaku unik JavaScript yang secara mental "mengangkat" deklarasi variabel dan fungsi ke bagian paling atas kode sebelum dijalankan. Ini adalah alasan kenapa kode kamu terkadang bisa berjalan meski urutannya terlihat "terbalik".
+Tanpa Scope, variabel dengan nama yang sama akan saling bertabrakan dan menimpa nilai satu sama lain. Scope menjaga agar variabel penting (seperti password) tetap aman di dalam fungsinya dan tidak berceceran ke seluruh file kode.
+
+---
+
+### 💡 Tantangan Part 13
+
+1. Buat variabel global `user`.
+2. Buat fungsi yang di dalamnya ada variabel local `token`.
+3. Coba tampilkan `user` dari dalam fungsi dan tampilkan `token` dari luar fungsi.
+4. Perhatikan pesan error di Console Browser kamu!
+
+---
+
+**Udah beres di-copas? Kabari kalau mau lanjut ke Part 14: Hoisting.** 🚀
+
+---
+
+Langsung ke **Part 14**, penutup **Phase 3**. Ini soal "keajaiban" JavaScript yang bisa narik kode ke atas secara otomatis.
+
+---
+
+# 🏗️ Part 14: Hoisting (Misteri "Pengangkatan" Kode)
 
 ### 🧩 Analogi: "Persiapan Panggung Konser"
-* **Hoisting:** Ibarat kru panggung yang sudah menyiapkan mikrofon dan alat musik di posisinya **sebelum** penyanyi naik panggung. Jadi saat penyanyi datang, semuanya sudah siap digunakan.
-* **JavaScript:** JS melakukan "scanning" cepat untuk mencari semua fungsi dan variabel sebelum mengeksekusi baris pertama.
+
+* **Hoisting**: Ibarat kru panggung yang sudah menyiapkan mikrofon dan alat musik di posisinya **sebelum** penyanyi naik panggung. Jadi, saat penyanyi datang, semua alat sudah siap dipakai.
+* **JavaScript**: Sebelum menjalankan kode baris demi baris, JS melakukan "pemindaian" cepat. Dia mencari deklarasi variabel dan fungsi, lalu secara mental "mengangkatnya" ke bagian paling atas kode.
 
 ---
 
 ### 📚 Teori: Siapa yang Terangkat?
 
-| Tipe | Perilaku Hoisting | Status |
-| :--- | :--- | :--- |
-| **Function Declaration** | Diangkat sepenuhnya (isi & nama). | ✅ Aman dipanggil di mana saja. |
-| **Variable `var`** | Diangkat, tapi nilainya tidak dibawa. | ⚠️ Hasilnya `undefined`. |
-| **`let` & `const`** | Diangkat ke "Temporal Dead Zone". | ❌ Error jika dipanggil sebelum baris kode. |
+Tidak semua kode diperlakukan sama oleh Hoisting:
+
+1.  **Function Declaration**: Diangkat sepenuhnya. Kamu bisa memanggil fungsi di baris 1, padahal fungsinya baru ditulis di baris 100.
+2.  **Variable `var`**: Diangkat, tapi nilainya tidak dibawa (menjadi `undefined`). Inilah alasan kenapa `var` bikin pusing dan sekarang kita pakai `let`.
+3.  **Variable `let` & `const`**: Diangkat ke **"Temporal Dead Zone"**. JS tahu variabel itu ada, tapi kamu dilarang menyentuhnya sebelum baris deklarasinya terbaca. Jika nekat, program akan **Error**.
+
+
 
 ---
 
-### 💻 Praktek Kode
+### 🛠️ Praktek: Bukti Hoisting
+
+Coba jalankan urutan "aneh" ini di `script.js`:
 
 ```javascript
 // --- 1. HOISTING PADA FUNGSI ---
-// Kita panggil di baris 2, padahal deklarasi di baris 5
-sayHello(); 
+sayHello(); // ✅ BISA! Padahal fungsinya ada di bawah.
 
 function sayHello() {
-    console.log("Halo! Saya terpanggil berkat Hoisting.");
+    console.log("Halo dari masa depan!");
 }
 
 // --- 2. HOISTING PADA VAR ---
-console.log(nama); // Output: undefined (Bukan Error!)
+console.log(nama); // ❌ Hasilnya: undefined (Bukan Error)
 var nama = "Syaifan";
 
-// --- 3. KEAMANAN LET & CONST ---
-// console.log(umur); // ❌ ERROR! Tidak bisa akses sebelum inisialisasi
+// --- 3. HOISTING PADA LET & CONST ---
+// console.log(umur); // ❌ ERROR! Cannot access 'umur' sebelum baris 17
 let umur = 20;
+```
+
+---
+
+### 🔍 Kenapa Ini Penting?
+
+Memahami Hoisting bakal menjauhkan kamu dari *bug* misterius di mana variabel tiba-tiba bernilai `undefined`. Aturan emasnya: **Selalu tulis variabel di bagian paling atas file atau fungsi** agar alur kodenya jelas dan tidak terjebak Hoisting.
+
+---
+
+### 💡 Tantangan Part 14
+
+1. Pindahkan semua fungsi yang pernah kamu buat ke baris paling bawah file `script.js`.
+2. Panggil fungsi tersebut dari baris paling atas.
+3. Amati mana yang berhasil jalan (Function Declaration) dan mana yang bakal error (Arrow Function).
+
+---
+
+### 🏆 Project 3: Personal Assistant Bot (Fase 3 Finale)
+
+Gabungkan materi **Function, Arrow Function, Scope, dan Hoisting** dalam satu script asisten digital.
+
+```javascript
+const botName = "Zura-Bot";
+
+// 1. Manfaatkan Hoisting (Panggil dulu, buat di bawah)
+tampilkanMenu(); 
+
+function tampilkanMenu() {
+    console.log(`--- [ ${botName} - Virtual Assistant ] ---`);
+}
+
+// 2. Arrow Function (Modern)
+const hitungDiskon = (harga) => {
+    const rate = 0.15; // Local Scope
+    return harga - (harga * rate);
+};
+
+// 3. Gabungkan Logic
+const prosesSapaan = (user, total) => {
+    const hasilAkhir = hitungDiskon(total);
+    return `Halo Master ${user}, total setelah diskon 15% adalah Rp${hasilAkhir}`;
+};
+
+console.log(prosesSapaan("Deni", 200000));
+```
+
+---
+
+**Phase 3 Resmi TAMAT.** Beresin GitHub-mu, kabari kalau sudah siap masuk ke **Phase 4: Data Structure (Array & Object)**. 🏎️💨
